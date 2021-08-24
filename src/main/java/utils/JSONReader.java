@@ -14,8 +14,8 @@ import java.util.List;
 public class JSONReader {
 
     @Nullable
-    public File fileReader() {
-        URL resource = getClass().getClassLoader().getResource("laureate.json");
+    public File fileReader(String name) {
+        URL resource = getClass().getClassLoader().getResource(name);
         if (resource == null) {
             throw new IllegalArgumentException("file not found!");
         } else {
@@ -33,7 +33,9 @@ public class JSONReader {
         List<Laureates> laureates = new ArrayList<>();
         try (Reader reader = new FileReader(file)) {
 
-            laureates = gson.fromJson(reader, new TypeToken<List<Laureates>>() {}.getType());
+            laureates = gson.fromJson(reader, new TypeToken<List<Laureates>>() {
+            }.getType());
+
 
         } catch (IOException e) {
             e.printStackTrace();

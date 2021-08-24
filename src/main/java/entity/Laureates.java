@@ -24,4 +24,5 @@ public class Laureates implements Serializable {
     private String diedCountryCode;
     private String diedCity;
     private String gender;
+    private List<Prize> prizes;
 }

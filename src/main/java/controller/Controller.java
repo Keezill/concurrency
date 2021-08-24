@@ -13,7 +13,7 @@ import java.util.concurrent.ForkJoinPool;
 public class Controller {
     public static void run() throws InterruptedException {
         JSONReader jsonReader = new JSONReader();
-        File file = jsonReader.fileReader();
+        File file = jsonReader.fileReader("laureate.json");
         List<Laureates> laureates = jsonReader.JSONParser(file);
         List<BigInteger> ages = DateParser.fromStringToDateParser(laureates);
         FindAverageUsingForkJoin findAverageUsingForkJoin = new FindAverageUsingForkJoin(ages);
@@ -47,5 +47,6 @@ public class Controller {
         System.out.println("#### After more JIT \n\n");
 
         SimpleBenchmark.dummyBenchmark(sequential);
-        SimpleBenchmark.dummyBenchmark(parallel);}
+        SimpleBenchmark.dummyBenchmark(parallel);
+    }
 }
