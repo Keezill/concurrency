@@ -1,3 +1,7 @@
+package utils;
+
+import entity.Laureates;
+
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.Period;

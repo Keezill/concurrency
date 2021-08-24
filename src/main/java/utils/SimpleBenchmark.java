@@ -1,6 +1,8 @@
+package utils;
+
 public class SimpleBenchmark {
 
-    static void dummyBenchmark(Runnable runnable) {
+    public static void dummyBenchmark(Runnable runnable) throws InterruptedException {
         var before = System.currentTimeMillis();
         runnable.run();
         var after = System.currentTimeMillis();
