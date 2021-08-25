@@ -1,7 +1,6 @@
 package utils;
 
 import entity.Laureates;
-import entity.Prize;
 
 import java.math.BigInteger;
 import java.time.LocalDate;

@@ -33,7 +33,7 @@ public class FindAverageUsingForkJoin extends RecursiveTask<BigDecimal> {
         return result.divide(BigDecimal.valueOf(2), 2, RoundingMode.CEILING);
     }
 
-    public BigDecimal sequential(List<BigInteger> ages){
+    public BigDecimal sequential(List<BigInteger> ages) {
         var acc = BigDecimal.ZERO;
         for (var value : ages) {
             acc = acc.add(new BigDecimal(value));
