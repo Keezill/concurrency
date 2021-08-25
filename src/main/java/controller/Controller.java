@@ -6,6 +6,7 @@ import utils.JSONReader;
 import utils.SimpleBenchmark;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
@@ -20,14 +21,14 @@ public class Controller {
 
 
         Runnable parallel = () -> {
-            var commonPool = ForkJoinPool.commonPool();
-            var result = commonPool.invoke(new FindAverageUsingForkJoin(ages));
+            ForkJoinPool commonPool = ForkJoinPool.commonPool();
+            BigDecimal result = commonPool.invoke(new FindAverageUsingForkJoin(ages));
 
             System.out.println("Parallel Result is: " + result);
         };
 
         Runnable sequential = () -> {
-            var acc = findAverageUsingForkJoin.sequential(ages);
+            BigDecimal acc = findAverageUsingForkJoin.sequential(ages);
 
             System.out.println("Sequential Result is: " + acc);
         };

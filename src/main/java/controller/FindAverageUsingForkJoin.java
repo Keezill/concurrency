@@ -17,25 +17,25 @@ public class FindAverageUsingForkJoin extends RecursiveTask<BigDecimal> {
 
     @Override
     protected BigDecimal compute() {
-        var result = BigDecimal.ZERO;
-        var size = ages.size();
+        BigDecimal result = BigDecimal.ZERO;
+        int size = ages.size();
         if (size < THRESHOLD) {
             return sequential(ages);
         } else {
-            var x = new FindAverageUsingForkJoin(ages.subList(0, size / 2));
-            var y = new FindAverageUsingForkJoin(ages.subList(size / 2, size));
+            FindAverageUsingForkJoin x = new FindAverageUsingForkJoin(ages.subList(0, size / 2));
+            FindAverageUsingForkJoin y = new FindAverageUsingForkJoin(ages.subList(size / 2, size));
             x.fork();
             y.fork();
-            var xResult = x.join();
-            var yResult = y.join();
+            BigDecimal xResult = x.join();
+            BigDecimal yResult = y.join();
             result = yResult.add(xResult);
         }
         return result.divide(BigDecimal.valueOf(2), 2, RoundingMode.CEILING);
     }
 
     public BigDecimal sequential(List<BigInteger> ages) {
-        var acc = BigDecimal.ZERO;
-        for (var value : ages) {
+        BigDecimal acc = BigDecimal.ZERO;
+        for (BigInteger value : ages) {
             acc = acc.add(new BigDecimal(value));
             try {
                 Thread.sleep(5);
